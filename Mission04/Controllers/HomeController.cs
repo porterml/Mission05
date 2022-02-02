@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission04.Models;
 using System;
@@ -11,22 +12,20 @@ namespace Mission04.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger; 
         private MovieFormContext movieContext { get; set; }  // this is to create an instance of the context before linking to the database
 
         // homecontroller is a constructor, pass teh movie form context to use it
-        public HomeController(ILogger<HomeController> logger, MovieFormContext name)
+        public HomeController(MovieFormContext name)
         {
-            _logger = logger;
             movieContext = name; // give the context the value of passed parameter
         }
 
-        public IActionResult Index()
+        public IActionResult Index() // go to index page
         {
             return View();
         }
 
-        public IActionResult My_Podcasts()
+        public IActionResult My_Podcasts() // go to my podcasts page
         {
             return View();
         }
@@ -34,7 +33,10 @@ namespace Mission04.Controllers
         [HttpGet] // use this view when
         public IActionResult AddMovie()
         {
-            return View();
+            ViewBag.Categories = movieContext.categories.ToList();   // the word after viewbag could be anything you choose
+            // to pass the categories table to the view
+
+            return View(); // viewbag automatically passed
         }
 
         [HttpPost] //use this function for a post method like submiting the form, use the object to store and pass along the values from the Form to the view mentioned
@@ -46,12 +48,18 @@ namespace Mission04.Controllers
             return View("Confirmation", NM);  
         }
 
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult AllMovies() //go to page that lists all movies
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var applications = movieContext.responses
+                .Include(x => x.Category)
+                .Where(x => x.Edited == false)
+                .OrderBy(x => x.Title)
+                .ToList(); //create a list to send to the view so it can be output on the page
+
+
+            return View(applications); //pass the list to the view via the ()
         }
+
     }
 
    

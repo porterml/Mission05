@@ -9,7 +9,15 @@
 @* the asp-for allows us to connect the model to the html page *@
 <form method="post">
     <label asp-for="Category">Category:</label>
-    <input asp-for="Category" />
+    <select asp-for="CategoryID">
+        <option value="">Select a Category(genre)</option>
+        @foreach (Category c in ViewBag.Categories) 
+        {
+            <option value="@c.CategoryID">@c.CategoryName</option>
+        }
+
+    </select>
+    @*<input asp-for="Category" />            use the select above instead*@
     <br />
 
     <label asp-for="Title">Title</label>
@@ -35,8 +43,8 @@
 
     <label asp-for="Edited">Edited</label>
     <select asp-for="Edited" >
-        <option value="True">Yes</option>
-        <option value="False">No</option> 
+        <option value="False">No</option>
+        <option value="True">Yes</option> 
     </select>
     <br />
 

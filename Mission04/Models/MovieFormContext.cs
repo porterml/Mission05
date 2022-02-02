@@ -15,15 +15,24 @@ namespace Mission04.Models
         }
 
         public DbSet<NewMovieForm> responses { get; set; }
+        public DbSet<Category> categories { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder mb)    // protected is "as long as its in the chain"
         {
+            mb.Entity<Category>().HasData(
+                    new Category {CategoryID = 1,CategoryName = "Suspense"},
+                    new Category {CategoryID = 2, CategoryName = "Comedy"},
+                    new Category { CategoryID = 3, CategoryName = "Musical"}
+                );
+
             mb.Entity<NewMovieForm>().HasData(
 
                     new NewMovieForm // seeding the data base with the following three classes
                     {
                         MovieId = 1,
-                        Category = "Suspense",
+                        CategoryID = 1,
                         Title = "Inception",
                         Year = 2010,
                         Director = "Christopher Nolan",
@@ -35,7 +44,7 @@ namespace Mission04.Models
                     new NewMovieForm
                     {
                         MovieId = 2,
-                        Category = "Comedy",
+                        CategoryID = 2,
                         Title = "Free Guy",
                         Year = 2021,
                         Director = "Shawn Levy",
@@ -47,7 +56,7 @@ namespace Mission04.Models
                     new NewMovieForm
                     {
                         MovieId = 3,
-                        Category = "Musical",
+                        CategoryID = 3,
                         Title = "Encanto",
                         Year = 2021,
                         Director = "Byron Howard",

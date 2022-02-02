@@ -12,8 +12,6 @@ namespace Mission04.Models
         [Required]
         public int MovieId { get; set; }
         [Required]
-        public string Category { get; set; }
-        [Required]
         public string Title { get; set; }
         [Required]
         public int Year { get; set; }
@@ -25,5 +23,10 @@ namespace Mission04.Models
         public bool Edited { get; set; }
         public string LentTo { get; set; }
         public string Notes { get; set; }
+        
+        // build foreign key relationship
+        [Required]
+        public int CategoryID { get; set; }
+        public Category Category { get; set; }
     }
 }

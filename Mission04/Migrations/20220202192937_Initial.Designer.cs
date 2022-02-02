@@ -8,7 +8,7 @@ using Mission04.Models;
 namespace Mission04.Migrations
 {
     [DbContext(typeof(MovieFormContext))]
-    [Migration("20220128022603_Initial")]
+    [Migration("20220202192937_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,15 +17,45 @@ namespace Mission04.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.22");
 
+            modelBuilder.Entity("Mission04.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryID");
+
+                    b.ToTable("categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryID = 1,
+                            CategoryName = "Suspense"
+                        },
+                        new
+                        {
+                            CategoryID = 2,
+                            CategoryName = "Comedy"
+                        },
+                        new
+                        {
+                            CategoryID = 3,
+                            CategoryName = "Musical"
+                        });
+                });
+
             modelBuilder.Entity("Mission04.Models.NewMovieForm", b =>
                 {
                     b.Property<int>("MovieId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -53,13 +83,15 @@ namespace Mission04.Migrations
 
                     b.HasKey("MovieId");
 
+                    b.HasIndex("CategoryID");
+
                     b.ToTable("responses");
 
                     b.HasData(
                         new
                         {
                             MovieId = 1,
-                            Category = "Suspense",
+                            CategoryID = 1,
                             Director = "Christopher Nolan",
                             Edited = false,
                             LentTo = "",
@@ -71,7 +103,7 @@ namespace Mission04.Migrations
                         new
                         {
                             MovieId = 2,
-                            Category = "Comedy",
+                            CategoryID = 2,
                             Director = "Shawn Levy",
                             Edited = false,
                             LentTo = "",
@@ -83,7 +115,7 @@ namespace Mission04.Migrations
                         new
                         {
                             MovieId = 3,
-                            Category = "Musical",
+                            CategoryID = 3,
                             Director = "Byron Howard",
                             Edited = false,
                             LentTo = "",
@@ -92,6 +124,15 @@ namespace Mission04.Migrations
                             Title = "Encanto",
                             Year = 2021
                         });
+                });
+
+            modelBuilder.Entity("Mission04.Models.NewMovieForm", b =>
+                {
+                    b.HasOne("Mission04.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
