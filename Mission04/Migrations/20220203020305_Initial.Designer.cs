@@ -8,7 +8,7 @@ using Mission04.Models;
 namespace Mission04.Migrations
 {
     [DbContext(typeof(MovieFormContext))]
-    [Migration("20220202192937_Initial")]
+    [Migration("20220203020305_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,7 +96,7 @@ namespace Mission04.Migrations
                             Edited = false,
                             LentTo = "",
                             Notes = "",
-                            Rating = "8.8/10",
+                            Rating = "PG-13",
                             Title = "Inception",
                             Year = 2010
                         },
@@ -108,7 +108,7 @@ namespace Mission04.Migrations
                             Edited = false,
                             LentTo = "",
                             Notes = "",
-                            Rating = "7.2/10",
+                            Rating = "PG-13",
                             Title = "Free Guy",
                             Year = 2021
                         },
@@ -120,7 +120,7 @@ namespace Mission04.Migrations
                             Edited = false,
                             LentTo = "",
                             Notes = "",
-                            Rating = "7.3/10",
+                            Rating = "PG",
                             Title = "Encanto",
                             Year = 2021
                         });

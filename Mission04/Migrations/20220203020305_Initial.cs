@@ -63,17 +63,17 @@ namespace Mission04.Migrations
             migrationBuilder.InsertData(
                 table: "responses",
                 columns: new[] { "MovieId", "CategoryID", "Director", "Edited", "LentTo", "Notes", "Rating", "Title", "Year" },
-                values: new object[] { 1, 1, "Christopher Nolan", false, "", "", "8.8/10", "Inception", 2010 });
+                values: new object[] { 1, 1, "Christopher Nolan", false, "", "", "PG-13", "Inception", 2010 });
 
             migrationBuilder.InsertData(
                 table: "responses",
                 columns: new[] { "MovieId", "CategoryID", "Director", "Edited", "LentTo", "Notes", "Rating", "Title", "Year" },
-                values: new object[] { 2, 2, "Shawn Levy", false, "", "", "7.2/10", "Free Guy", 2021 });
+                values: new object[] { 2, 2, "Shawn Levy", false, "", "", "PG-13", "Free Guy", 2021 });
 
             migrationBuilder.InsertData(
                 table: "responses",
                 columns: new[] { "MovieId", "CategoryID", "Director", "Edited", "LentTo", "Notes", "Rating", "Title", "Year" },
-                values: new object[] { 3, 3, "Byron Howard", false, "", "", "7.3/10", "Encanto", 2021 });
+                values: new object[] { 3, 3, "Byron Howard", false, "", "", "PG", "Encanto", 2021 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_responses_CategoryID",

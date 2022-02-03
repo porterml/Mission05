@@ -13,7 +13,7 @@ namespace Mission04.Models
         public int MovieId { get; set; }
         [Required]
         public string Title { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Year of movie required.")]
         public int Year { get; set; }
         [Required]
         public string Director { get; set; }

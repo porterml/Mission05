@@ -36,7 +36,7 @@ namespace Mission04.Models
                         Title = "Inception",
                         Year = 2010,
                         Director = "Christopher Nolan",
-                        Rating = "8.8/10",
+                        Rating = "PG-13",
                         Edited = false,
                         LentTo = "",
                         Notes = ""
@@ -48,7 +48,7 @@ namespace Mission04.Models
                         Title = "Free Guy",
                         Year = 2021,
                         Director = "Shawn Levy",
-                        Rating = "7.2/10",
+                        Rating = "PG-13",
                         Edited = false,
                         LentTo = "",
                         Notes = ""
@@ -60,7 +60,7 @@ namespace Mission04.Models
                         Title = "Encanto",
                         Year = 2021,
                         Director = "Byron Howard",
-                        Rating = "7.3/10",
+                        Rating = "PG",
                         Edited = false,
                         LentTo = "",
                         Notes = ""
